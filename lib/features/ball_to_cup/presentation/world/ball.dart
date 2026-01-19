@@ -188,7 +188,7 @@ class Ball extends SpriteComponent
     if (other is GoalZone) {
       velocity = Vector2.zero();
       state = BallState.idle;
-      gameRef.showWinDialog();
+      gameRef.showWinScreen();
       return;
     }
   }
