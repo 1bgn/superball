@@ -1,35 +1,45 @@
 import 'package:injectable/injectable.dart';
 import 'package:signals/signals.dart';
-import 'state.dart';
+import 'state.dart'; // Убрал дублирующий import
 
 @lazySingleton
 class ShotService {
-  final state = signal<ShotState>(const ShotState.idle());
+  final _state = signal<ShotState>(const ShotState.idle());
+  ReadonlySignal<ShotState> get state => _state.readonly();
 
-  bool get canStrike => state.value is _Idle || state.value is _Aiming;
+  bool get canStrike => _state.value == const ShotState.idle() ||
+      _state.value == const ShotState.aiming();
 
   void startAim() {
     if (!canStrike) return;
-    state.value = const ShotState.aiming();
+    _state.value = const ShotState.aiming();
   }
 
   void launched() {
-    state.value = const ShotState.flying(floorBounces: 0);
+    _state.value = const ShotState.flying(floorBounces: 0);
   }
 
   void onFloorBounce() {
-    final s = state.value;
-    if (s is _Flying) {
-      state.value = ShotState.flying(floorBounces: s.floorBounces + 1);
-    }
+    final s = _state.value;
+    s.maybeWhen(
+      flying: (floorBounces) {
+        _state.value = ShotState.flying(floorBounces: floorBounces + 1);
+      },
+      orElse: () {},
+    );
   }
 
   void onCupEntered() {
-    final s = state.value;
-    if (s is _Flying && s.floorBounces >= 1) {
-      state.value = const ShotState.won();
-    }
+    final s = _state.value;
+    s.maybeWhen(
+      flying: (floorBounces) {
+        if (floorBounces >= 1) {
+          _state.value = const ShotState.won();
+        }
+      },
+      orElse: () {},
+    );
   }
 
-  void reset() => state.value = const ShotState.idle();
+  void reset() => _state.value = const ShotState.idle();
 }

@@ -55,14 +55,14 @@ extension ShotStatePatterns on ShotState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Idle value)?  idle,TResult Function( _Aiming value)?  aiming,TResult Function( _Flying value)?  flying,TResult Function( _Won value)?  won,TResult Function( _Lost value)?  lost,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( ShotStateIdle value)?  idle,TResult Function( ShotStateAiming value)?  aiming,TResult Function( ShotStateFlying value)?  flying,TResult Function( ShotStateWon value)?  won,TResult Function( ShotStateLost value)?  lost,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Idle() when idle != null:
-return idle(_that);case _Aiming() when aiming != null:
-return aiming(_that);case _Flying() when flying != null:
-return flying(_that);case _Won() when won != null:
-return won(_that);case _Lost() when lost != null:
+case ShotStateIdle() when idle != null:
+return idle(_that);case ShotStateAiming() when aiming != null:
+return aiming(_that);case ShotStateFlying() when flying != null:
+return flying(_that);case ShotStateWon() when won != null:
+return won(_that);case ShotStateLost() when lost != null:
 return lost(_that);case _:
   return orElse();
 
@@ -81,15 +81,18 @@ return lost(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Idle value)  idle,required TResult Function( _Aiming value)  aiming,required TResult Function( _Flying value)  flying,required TResult Function( _Won value)  won,required TResult Function( _Lost value)  lost,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( ShotStateIdle value)  idle,required TResult Function( ShotStateAiming value)  aiming,required TResult Function( ShotStateFlying value)  flying,required TResult Function( ShotStateWon value)  won,required TResult Function( ShotStateLost value)  lost,}){
 final _that = this;
 switch (_that) {
-case _Idle():
-return idle(_that);case _Aiming():
-return aiming(_that);case _Flying():
-return flying(_that);case _Won():
-return won(_that);case _Lost():
-return lost(_that);}
+case ShotStateIdle():
+return idle(_that);case ShotStateAiming():
+return aiming(_that);case ShotStateFlying():
+return flying(_that);case ShotStateWon():
+return won(_that);case ShotStateLost():
+return lost(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -103,14 +106,14 @@ return lost(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Idle value)?  idle,TResult? Function( _Aiming value)?  aiming,TResult? Function( _Flying value)?  flying,TResult? Function( _Won value)?  won,TResult? Function( _Lost value)?  lost,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( ShotStateIdle value)?  idle,TResult? Function( ShotStateAiming value)?  aiming,TResult? Function( ShotStateFlying value)?  flying,TResult? Function( ShotStateWon value)?  won,TResult? Function( ShotStateLost value)?  lost,}){
 final _that = this;
 switch (_that) {
-case _Idle() when idle != null:
-return idle(_that);case _Aiming() when aiming != null:
-return aiming(_that);case _Flying() when flying != null:
-return flying(_that);case _Won() when won != null:
-return won(_that);case _Lost() when lost != null:
+case ShotStateIdle() when idle != null:
+return idle(_that);case ShotStateAiming() when aiming != null:
+return aiming(_that);case ShotStateFlying() when flying != null:
+return flying(_that);case ShotStateWon() when won != null:
+return won(_that);case ShotStateLost() when lost != null:
 return lost(_that);case _:
   return null;
 
@@ -130,11 +133,11 @@ return lost(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  idle,TResult Function()?  aiming,TResult Function( int floorBounces)?  flying,TResult Function()?  won,TResult Function()?  lost,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Idle() when idle != null:
-return idle();case _Aiming() when aiming != null:
-return aiming();case _Flying() when flying != null:
-return flying(_that.floorBounces);case _Won() when won != null:
-return won();case _Lost() when lost != null:
+case ShotStateIdle() when idle != null:
+return idle();case ShotStateAiming() when aiming != null:
+return aiming();case ShotStateFlying() when flying != null:
+return flying(_that.floorBounces);case ShotStateWon() when won != null:
+return won();case ShotStateLost() when lost != null:
 return lost();case _:
   return orElse();
 
@@ -155,12 +158,15 @@ return lost();case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  idle,required TResult Function()  aiming,required TResult Function( int floorBounces)  flying,required TResult Function()  won,required TResult Function()  lost,}) {final _that = this;
 switch (_that) {
-case _Idle():
-return idle();case _Aiming():
-return aiming();case _Flying():
-return flying(_that.floorBounces);case _Won():
-return won();case _Lost():
-return lost();}
+case ShotStateIdle():
+return idle();case ShotStateAiming():
+return aiming();case ShotStateFlying():
+return flying(_that.floorBounces);case ShotStateWon():
+return won();case ShotStateLost():
+return lost();case _:
+  throw StateError('Unexpected subclass');
+
+}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -176,11 +182,11 @@ return lost();}
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  idle,TResult? Function()?  aiming,TResult? Function( int floorBounces)?  flying,TResult? Function()?  won,TResult? Function()?  lost,}) {final _that = this;
 switch (_that) {
-case _Idle() when idle != null:
-return idle();case _Aiming() when aiming != null:
-return aiming();case _Flying() when flying != null:
-return flying(_that.floorBounces);case _Won() when won != null:
-return won();case _Lost() when lost != null:
+case ShotStateIdle() when idle != null:
+return idle();case ShotStateAiming() when aiming != null:
+return aiming();case ShotStateFlying() when flying != null:
+return flying(_that.floorBounces);case ShotStateWon() when won != null:
+return won();case ShotStateLost() when lost != null:
 return lost();case _:
   return null;
 
@@ -192,8 +198,8 @@ return lost();case _:
 /// @nodoc
 
 
-class _Idle implements ShotState {
-  const _Idle();
+class ShotStateIdle implements ShotState {
+  const ShotStateIdle();
   
 
 
@@ -203,7 +209,7 @@ class _Idle implements ShotState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Idle);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShotStateIdle);
 }
 
 
@@ -224,8 +230,8 @@ String toString() {
 /// @nodoc
 
 
-class _Aiming implements ShotState {
-  const _Aiming();
+class ShotStateAiming implements ShotState {
+  const ShotStateAiming();
   
 
 
@@ -235,7 +241,7 @@ class _Aiming implements ShotState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Aiming);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShotStateAiming);
 }
 
 
@@ -256,8 +262,8 @@ String toString() {
 /// @nodoc
 
 
-class _Flying implements ShotState {
-  const _Flying({required this.floorBounces});
+class ShotStateFlying implements ShotState {
+  const ShotStateFlying({required this.floorBounces});
   
 
  final  int floorBounces;
@@ -266,13 +272,13 @@ class _Flying implements ShotState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$FlyingCopyWith<_Flying> get copyWith => __$FlyingCopyWithImpl<_Flying>(this, _$identity);
+$ShotStateFlyingCopyWith<ShotStateFlying> get copyWith => _$ShotStateFlyingCopyWithImpl<ShotStateFlying>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Flying&&(identical(other.floorBounces, floorBounces) || other.floorBounces == floorBounces));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShotStateFlying&&(identical(other.floorBounces, floorBounces) || other.floorBounces == floorBounces));
 }
 
 
@@ -288,8 +294,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$FlyingCopyWith<$Res> implements $ShotStateCopyWith<$Res> {
-  factory _$FlyingCopyWith(_Flying value, $Res Function(_Flying) _then) = __$FlyingCopyWithImpl;
+abstract mixin class $ShotStateFlyingCopyWith<$Res> implements $ShotStateCopyWith<$Res> {
+  factory $ShotStateFlyingCopyWith(ShotStateFlying value, $Res Function(ShotStateFlying) _then) = _$ShotStateFlyingCopyWithImpl;
 @useResult
 $Res call({
  int floorBounces
@@ -300,17 +306,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$FlyingCopyWithImpl<$Res>
-    implements _$FlyingCopyWith<$Res> {
-  __$FlyingCopyWithImpl(this._self, this._then);
+class _$ShotStateFlyingCopyWithImpl<$Res>
+    implements $ShotStateFlyingCopyWith<$Res> {
+  _$ShotStateFlyingCopyWithImpl(this._self, this._then);
 
-  final _Flying _self;
-  final $Res Function(_Flying) _then;
+  final ShotStateFlying _self;
+  final $Res Function(ShotStateFlying) _then;
 
 /// Create a copy of ShotState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? floorBounces = null,}) {
-  return _then(_Flying(
+  return _then(ShotStateFlying(
 floorBounces: null == floorBounces ? _self.floorBounces : floorBounces // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -322,8 +328,8 @@ as int,
 /// @nodoc
 
 
-class _Won implements ShotState {
-  const _Won();
+class ShotStateWon implements ShotState {
+  const ShotStateWon();
   
 
 
@@ -333,7 +339,7 @@ class _Won implements ShotState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Won);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShotStateWon);
 }
 
 
@@ -354,8 +360,8 @@ String toString() {
 /// @nodoc
 
 
-class _Lost implements ShotState {
-  const _Lost();
+class ShotStateLost implements ShotState {
+  const ShotStateLost();
   
 
 
@@ -365,7 +371,7 @@ class _Lost implements ShotState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Lost);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShotStateLost);
 }
 
 
